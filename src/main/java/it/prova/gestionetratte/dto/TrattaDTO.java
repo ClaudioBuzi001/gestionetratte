@@ -161,7 +161,7 @@ public class TrattaDTO {
 		this.airbus = airbus;
 	}
 
-	public Tratta buildFilmModel() {
+	public Tratta buildTrattaModel() {
 		Tratta result = new Tratta(this.id, this.codice, this.descrizione, this.data, this.oraDecollo,
 				this.oraAtterraggio, this.stato);
 

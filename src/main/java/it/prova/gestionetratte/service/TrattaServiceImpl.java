@@ -14,8 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.prova.gestionetratte.model.Airbus;
+import it.prova.gestionetratte.model.Stato;
 import it.prova.gestionetratte.model.Tratta;
 import it.prova.gestionetratte.repository.TrattaRepository;
+import it.prova.gestionetratte.web.api.exception.TrattaNonAnnullataException;
 
 @Service
 public class TrattaServiceImpl implements TrattaService {
@@ -62,6 +64,9 @@ public class TrattaServiceImpl implements TrattaService {
 	@Override
 	@Transactional
 	public void rimuovi(Tratta trattaInstance) {
+		if(!trattaInstance.getStato().equals(Stato.ANNULLATA))
+			throw new TrattaNonAnnullataException("Impossibile eliminare questa tratta in quanto non è stata ancora annululata");
+		
 		repository.delete(trattaInstance);
 	}
 	

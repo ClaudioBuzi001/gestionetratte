@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import it.prova.gestionetratte.model.Airbus;
 import it.prova.gestionetratte.repository.AirbusRepository;
+import it.prova.gestionetratte.web.api.exception.TratteAssociateException;
 
 @Service
 public class AirbusServiceImpl implements AirbusService{
@@ -61,6 +62,9 @@ public class AirbusServiceImpl implements AirbusService{
 	@Override
 	@Transactional
 	public void rimuovi(Airbus airbusInstance) {
+		if(airbusInstance.getTratte().size() > 0)
+			throw new TratteAssociateException("Tratte associate, impossibile eliminare questo Airbus");
+		
 		repository.delete(airbusInstance);		
 	}
 

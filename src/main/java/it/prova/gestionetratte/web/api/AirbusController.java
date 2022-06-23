@@ -74,7 +74,7 @@ public class AirbusController {
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void delete(@PathVariable(required = true) Long id) {
-		Airbus airbus = airbusService.caricaSingoloElemento(id);
+		Airbus airbus = airbusService.caricaSingoloElementoEager(id);
 
 		if (airbus == null)
 			throw new AirbusNotFoundException("Airbus not found con id: " + id);
