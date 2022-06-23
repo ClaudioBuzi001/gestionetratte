@@ -33,7 +33,7 @@ public class AirbusController {
 	public List<AirbusDTO> getAll() {
 		// senza DTO qui hibernate dava il problema del N + 1 SELECT
 		// (probabilmente dovuto alle librerie che serializzano in JSON)
-		return AirbusDTO.createAirbusDTOListFromModelList(airbusService.listAllElements(true), true);
+		return AirbusDTO.createAirbusDTOListFromModelList(airbusService.listAllElements(false), true);
 	}
 
 	@GetMapping("/{id}")

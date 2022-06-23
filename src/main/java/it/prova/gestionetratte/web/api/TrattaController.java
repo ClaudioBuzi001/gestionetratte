@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import it.prova.gestionetratte.dto.TrattaDTO;
 import it.prova.gestionetratte.model.Tratta;
@@ -20,6 +22,9 @@ import it.prova.gestionetratte.service.TrattaService;
 import it.prova.gestionetratte.web.api.exception.IdNotNullForInsertException;
 import it.prova.gestionetratte.web.api.exception.TrattaNotFoundException;
 
+
+@RestController
+@RequestMapping("api/tratta")
 public class TrattaController {
 	@Autowired
 	private TrattaService trattaService;
@@ -80,6 +85,22 @@ public class TrattaController {
 		return TrattaDTO.buildTrattaDTOFromModel(trattaggiornata, false);
 	}
 
+	@GetMapping("/concludiTratte")
+	@ResponseStatus(HttpStatus.OK)
+	public void concludiTratte() {
 
+		if (trattaService.concludiTratte() == false)
+			throw new RuntimeException("Tratte non concluse");
+	}
 
 }
+
+
+
+
+
+
+
+
+
+

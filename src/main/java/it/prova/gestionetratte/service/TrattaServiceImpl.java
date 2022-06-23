@@ -1,5 +1,7 @@
 package it.prova.gestionetratte.service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import it.prova.gestionetratte.model.Airbus;
 import it.prova.gestionetratte.model.Stato;
 import it.prova.gestionetratte.model.Tratta;
 import it.prova.gestionetratte.repository.TrattaRepository;
@@ -118,4 +119,18 @@ public class TrattaServiceImpl implements TrattaService {
 
 		return typedQuery.getResultList();
 	}
+
+	@Override
+	@Transactional
+	public boolean concludiTratte() {
+		if(repository.chiudiTratte( LocalDate.now(), LocalTime.now()) > 0) 
+			return true;
+		
+		return false;
+	}
+	//Nel controller verificare se il metodo è andata buon fine
 }
+
+
+
+

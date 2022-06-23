@@ -19,5 +19,7 @@ public interface TrattaService {
 	void rimuovi(Tratta trattaInstance);
 	
 	List<Tratta> findByExample(Tratta example);
+	
+	public boolean concludiTratte();
 
 }
