@@ -21,5 +21,7 @@ public interface AirbusService {
 	Airbus trovaPerCodice(String codice);
 	
 	public List<Airbus> findByExample(Airbus example);
+	
+	public List<Airbus> trovaSovrapposizioni();
 
 }
